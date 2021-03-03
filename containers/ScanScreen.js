@@ -11,11 +11,11 @@ import {
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { BottomSheet } from "react-native-btr";
 import axios from "axios";
+import * as HistoriqueManager from "../HistoriqueManager";
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-  const [data, setData] = useState();
   const [visible, setVisible] = useState(false);
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +31,6 @@ export default function App() {
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     setVisible(!visible);
-    setData(data);
     setIsLoading(true);
 
     const fetchData = async () => {
@@ -39,12 +38,17 @@ export default function App() {
         const response = await axios.get(
           `https://world.openfoodfacts.org/api/v0/product/${data}.json`
         );
-        console.log(response.data.product.ingredients);
-        setProduct(response.data);
+
+        if (response.data.status === 0) {
+          throw response.data.status_verbose;
+        }
+
+        setProduct(response.data.product);
         setIsLoading(false);
         setErrorMessages(false);
+        await HistoriqueManager.AddData(data);
       } catch (error) {
-        //console.log(error.response.data.error);
+        console.log(error);
 
         setIsLoading(false);
         setScanned(true);
@@ -91,10 +95,12 @@ export default function App() {
               >
                 {scanned && !errorMessages ? (
                   <View>
-                    <Text>{product.product.product_name}</Text>
-                    <Text>{product.product.brands}</Text>
-                    {product.product.ingredients.map((score, index) => {
-                      return <Text key={index}>{score.percent_estimate}</Text>;
+                    <Text>{product.product_name}</Text>
+                    <Text>{product.brands}</Text>
+                    {product.ingredients.map((score, index) => {
+                      return (
+                        <Text key={index}>{score.percent_estimate}/100</Text>
+                      );
                     })}
                   </View>
                 ) : (

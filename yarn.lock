@@ -1639,6 +1639,13 @@
     dequal "^1.0.0"
     isoworker "^0.1.1"
 
+"@react-native-async-storage/async-storage@^1.14.1":
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.14.1.tgz#3c2ff2b1a312df3b1c809a60fa88665e50a095b8"
+  integrity sha512-UkLUox2q5DKNYB6IMUzsuwrTJeXGLySvtQlnrqd3fd+96JErCT4X3xD+W1cvQjes0nm0LbaELbwObKc+Tea7wA==
+  dependencies:
+    deep-assign "^3.0.0"
+
 "@react-native-community/cli-debugger-ui@^4.13.1":
   version "4.13.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-4.13.1.tgz#07de6d4dab80ec49231de1f1fbf658b4ad39b32c"
@@ -5445,13 +5452,6 @@ react-native-screens@~2.15.2:
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.15.2.tgz#a449700e895b462937211ec72ed6f09652758f06"
   integrity sha512-CagNf2APXkVoRlF3Mugr264FbKbrBg9eXUkqhIPVeZB8EsdS8XPrnt99yj/pzmT+yJMBY0dGrjXT8+68WYh6YQ==
 
-react-native-scroll-bottom-sheet@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/react-native-scroll-bottom-sheet/-/react-native-scroll-bottom-sheet-0.7.0.tgz#00410d0a350f11327514108502dc6628dc4536d4"
-  integrity sha512-gLgGiB8roynIVcP8tw+Y+iVVCYDDVQW9ug//SX4HhM01Q0nDdRiwVgnCDnMbDQCmAFpwtJEdEs2a+Ys/7L9CIw==
-  dependencies:
-    utility-types "^3.10.0"
-
 react-native-vector-icons@^6.6.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-6.7.0.tgz#8871ba52ef8e98878ba7a932847f96b6dfc1c137"
@@ -6452,11 +6452,6 @@ util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
-
-utility-types@^3.10.0:
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/utility-types/-/utility-types-3.10.0.tgz#ea4148f9a741015f05ed74fd615e1d20e6bed82b"
-  integrity sha512-O11mqxmi7wMKCo6HKFt5AhO4BwY3VV68YU07tgxfz8zJTIxr4BpsezN49Ffwy9j3ZpwwJp4fkRwjRzq3uWE6Rg==
 
 utils-merge@1.0.1:
   version "1.0.1"
