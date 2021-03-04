@@ -28,8 +28,12 @@ const DeleteData = async (data, datas) => {
 
 const AddData = async (data) => {
   const datas = await Load();
-  // data est intégré au tableau datas
-  datas.push(data);
+  // data est ajouté au début du tableau datas seulement si elle n'existe pas
+  const index = datas.indexOf(data);
+  if (index === -1) {
+    datas.unshift(data);
+  }
+
   await Save(datas);
 };
 
