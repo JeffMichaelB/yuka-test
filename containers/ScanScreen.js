@@ -11,7 +11,7 @@ import {
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { BottomSheet } from "react-native-btr";
 import axios from "axios";
-import * as HistoriqueManager from "../HistoriqueManager";
+import * as HistoriqueManager from "../components/HistoriqueManager";
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);

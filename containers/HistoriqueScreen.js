@@ -8,7 +8,7 @@ import {
   Image,
   View,
 } from "react-native";
-import * as HistoriqueManager from "../HistoriqueManager";
+import * as HistoriqueManager from "../components/HistoriqueManager";
 import axios from "axios";
 
 export default function HistoriqueScreen() {
@@ -16,9 +16,14 @@ export default function HistoriqueScreen() {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
 
+  // Delete Item
+  const deleteItem = async (code) => {
+    await HistoriqueManager.DeleteData(code);
+    return;
+  };
+
   useEffect(() => {
     const fetchData = async () => {
-      //await HistoriqueManager.DeleteData("5");
       const datas = await HistoriqueManager.Load();
 
       setProducts(
@@ -47,22 +52,39 @@ export default function HistoriqueScreen() {
       <ActivityIndicator size="large" color="grey" />
     </View>
   ) : (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate("ProductScreen");
-      }}
-    >
+    <>
+      {/*<Image
+        source={{
+          uri: products.selected_images.front.display.en,
+        }}
+      />*/}
       {products.map((product, index) => {
         return (
-          <View key={index}>
-            <Text>{product.product_name}</Text>
-            <Text>{product.brands}</Text>
-            {product.ingredients.map((score, index) => {
-              return <Text key={index}>{score.percent_estimate}/100</Text>;
-            })}
-          </View>
+          <>
+            <TouchableOpacity
+              data={product}
+              onPress={() => {
+                deleteItem(product.code);
+              }}
+            >
+              <Text>x</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("ProductScreen", product);
+              }}
+            >
+              <View>
+                <Text>{product.product_name}</Text>
+                <Text>{product.brands}</Text>
+                {product.ingredients.map((score, index) => {
+                  return <Text key={index}>{score.percent_estimate}/100</Text>;
+                })}
+              </View>
+            </TouchableOpacity>
+          </>
         );
       })}
-    </TouchableOpacity>
+    </>
   );
 }

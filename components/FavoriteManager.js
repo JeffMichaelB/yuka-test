@@ -1,18 +1,20 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const key = "historique";
+const key = "favorite";
 
-const Load = async () => {
+const LoadFavorite = async () => {
   const datas = await AsyncStorage.getItem(key);
 
+  // Lecture de la valeur en string
   return datas === null ? [] : JSON.parse(datas);
 };
 
-const Save = async (datas) => {
+const SaveFavorite = async (datas) => {
+  // Stockage de la valeur transformée en JSON
   await AsyncStorage.setItem(key, JSON.stringify(datas));
 };
 
-const DeleteData = async (data, datas) => {
+const DeleteDataFavorite = async (data, datas) => {
   if (!datas) {
     datas = await Load();
   }
@@ -24,11 +26,11 @@ const DeleteData = async (data, datas) => {
   }
 };
 
-const AddData = async (data) => {
+const AddDataFavorite = async (data) => {
   const datas = await Load();
-
+  // data est intégré au tableau datas
   datas.push(data);
   await Save(datas);
 };
 
-export { Load, Save, DeleteData, AddData };
+export { LoadFavorite, SaveFavorite, DeleteDataFavorite, AddDataFavorite };
