@@ -18,8 +18,7 @@ export default function HistoriqueScreen() {
 
   // Delete Item
   const deleteItem = async (code) => {
-    await HistoriqueManager.DeleteData(code);
-    return;
+    return await HistoriqueManager.DeleteData(code);
   };
 
   useEffect(() => {

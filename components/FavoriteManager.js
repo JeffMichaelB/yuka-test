@@ -5,6 +5,7 @@ const key = "favorite";
 const LoadFavorite = async () => {
   const datas = await AsyncStorage.getItem(key);
 
+  console.log(datas);
   // Lecture de la valeur en string
   return datas === null ? [] : JSON.parse(datas);
 };
@@ -16,21 +17,22 @@ const SaveFavorite = async (datas) => {
 
 const DeleteDataFavorite = async (data, datas) => {
   if (!datas) {
-    datas = await Load();
+    datas = await LoadFavorite();
   }
 
   const index = datas.indexOf(data);
   if (index !== -1) {
     datas.splice(index, 1);
-    await Save(datas);
+    await SaveFavorite(datas);
   }
 };
 
 const AddDataFavorite = async (data) => {
-  const datas = await Load();
+  const datas = await LoadFavorite();
+  //console.log(data);
   // data est intégré au tableau datas
   datas.push(data);
-  await Save(datas);
+  await SaveFavorite(datas);
 };
 
 export { LoadFavorite, SaveFavorite, DeleteDataFavorite, AddDataFavorite };
