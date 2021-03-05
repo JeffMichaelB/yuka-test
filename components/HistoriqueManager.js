@@ -26,10 +26,6 @@ const DeleteData = async (data, datas) => {
   }
 };
 
-const Toto = () => {
-  return datas.unshift(data);
-};
-
 const AddData = async (data) => {
   const datas = await Load();
   // data est ajouté au début du tableau datas seulement si elle n'existe pas
