@@ -15,6 +15,7 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import { BottomSheet } from "react-native-btr";
 import axios from "axios";
 import * as HistoriqueManager from "../components/HistoriqueManager";
+import { Camera } from "expo-camera";
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -132,10 +133,7 @@ export default function App() {
                         {product.product_name}
                       </Text>
                       <Text>{product.brands}</Text>
-                      <Text>
-                        {product.ecoscore_data.adjustments.packaging.score} /
-                        100
-                      </Text>
+                      <Text>{product.ecoscore_data.score} / 100</Text>
                     </View>
                   </View>
                 ) : (
