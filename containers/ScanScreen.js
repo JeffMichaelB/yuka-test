@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { AntDesign } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import {
   Text,
   View,
+  TouchableOpacity,
   StyleSheet,
   ActivityIndicator,
   Button,
@@ -20,6 +23,7 @@ export default function App() {
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessages, setErrorMessages] = useState(false);
+  const [minus, setMinus] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -84,8 +88,28 @@ export default function App() {
       <View style={styles.containers}>
         <View style={styles.containers}>
           <BottomSheet visible={visible} enabledInnerScrolling={true}>
-            <View style={styles.bottomNavigationView}>
-              <Button title="x" onPress={closeBottomNavigationView} />
+            <TouchableOpacity
+              style={styles.minus}
+              onPress={() => {
+                setMinus(!minus);
+              }}
+            >
+              <FontAwesome5 name="minus" size={30} color="#D9D9D9" />
+            </TouchableOpacity>
+            <View
+              style={
+                minus === true
+                  ? styles.bottomNavigationViewTrue
+                  : styles.bottomNavigationViewFalse
+              }
+            >
+              <TouchableOpacity
+                style={styles.close}
+                onPress={closeBottomNavigationView}
+              >
+                <AntDesign name="close" size={24} color="black" />
+              </TouchableOpacity>
+
               <View
                 style={{
                   flex: 1,
@@ -94,14 +118,25 @@ export default function App() {
                 }}
               >
                 {scanned && !errorMessages ? (
-                  <View>
-                    <Text>{product.product_name}</Text>
-                    <Text>{product.brands}</Text>
-                    {product.ingredients.map((score, index) => {
-                      return (
-                        <Text key={index}>{score.percent_estimate}/100</Text>
-                      );
-                    })}
+                  <View style={styles.productInformations}>
+                    <View>
+                      <Image
+                        style={styles.productPicture}
+                        source={{
+                          uri: product.image_front_small_url,
+                        }}
+                      />
+                    </View>
+                    <View style={styles.productDescription}>
+                      <Text style={styles.productTitle}>
+                        {product.product_name}
+                      </Text>
+                      <Text>{product.brands}</Text>
+                      <Text>
+                        {product.ecoscore_data.adjustments.packaging.score} /
+                        100
+                      </Text>
+                    </View>
                   </View>
                 ) : (
                   scanned && errorMessages && <Text>Produit inconnu</Text>
@@ -121,35 +156,51 @@ const styles = StyleSheet.create({
   container: {
     height: "100%",
     width: "100%",
-    flexDirection: "column",
-  },
-  centeredView: {
-    marginTop: 100,
-
-    justifyContent: "center",
-  },
-  modal: {
-    justifyContent: "center",
-  },
-  modalView: {
-    backgroundColor: "white",
-    justifyContent: "center",
-
-    width: "100%",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-  },
-  containers: {
-    backgroundColor: "red",
   },
 
-  bottomNavigationView: {
+  bottomNavigationViewFalse: {
     backgroundColor: "white",
     width: "100%",
     height: 250,
-    justifyContent: "center",
+    paddingRight: 20,
+    paddingLeft: 20,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  bottomNavigationViewTrue: {
+    backgroundColor: "white",
+    width: "100%",
+    height: "90%",
+    paddingRight: 20,
+    paddingLeft: 20,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  minus: {
     alignItems: "center",
   },
+
+  productPicture: {
+    height: 120,
+    width: 120,
+    marginTop: 5,
+  },
+  close: {
+    alignItems: "flex-end",
+    paddingBottom: 15,
+    paddingTop: 15,
+  },
+  productInformations: {
+    flexDirection: "row",
+  },
+  productDescription: {
+    paddingLeft: 20,
+    flex: 1,
+  },
+  productTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
+  sizeText: {},
 });

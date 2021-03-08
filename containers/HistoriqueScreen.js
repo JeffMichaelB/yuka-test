@@ -59,7 +59,7 @@ export default function HistoriqueScreen() {
       />*/}
       {products.map((product, index) => {
         return (
-          <>
+          <View key={index}>
             <TouchableOpacity
               data={product}
               onPress={() => {
@@ -68,6 +68,7 @@ export default function HistoriqueScreen() {
             >
               <Text>x</Text>
             </TouchableOpacity>
+
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate("ProductScreen", product);
@@ -76,12 +77,13 @@ export default function HistoriqueScreen() {
               <View>
                 <Text>{product.product_name}</Text>
                 <Text>{product.brands}</Text>
-                {product.ingredients.map((score, index) => {
+
+                {/*product.ingredients.map((score, index) => {
                   return <Text key={index}>{score.percent_estimate}/100</Text>;
-                })}
+                })*/}
               </View>
             </TouchableOpacity>
-          </>
+          </View>
         );
       })}
     </>

@@ -8,17 +8,13 @@ export default function ProductScreen(data) {
 
   const AddFavorite = async () => {
     const code = data.route.params.code;
-    return await FavoriteManager.AddDataFavorite(code);
+    await FavoriteManager.AddDataFavorite(code);
   };
 
   return (
     <View>
       <Text>{data.route.params.code}</Text>
-      <TouchableOpacity
-        onPress={() => {
-          AddFavorite();
-        }}
-      >
+      <TouchableOpacity onPress={AddFavorite}>
         <Text>Ajouter aux favoris</Text>
       </TouchableOpacity>
     </View>
