@@ -31,12 +31,6 @@ const AddData = async (data) => {
   // data est ajouté au début du tableau datas seulement si elle n'existe pas
   const index = datas.indexOf(data);
 
-  /*
-  if (0 <= index) {
-    datas.splice(index, 1);
-  }
-  datas.unshift(data);
-  /*/
   if (index === -1) {
     datas.unshift(data);
   } else {
@@ -47,7 +41,6 @@ const AddData = async (data) => {
       }
     }
   }
-  //*/
 
   await Save(datas);
 };

@@ -81,7 +81,7 @@ export default function App() {
   ) : (
     <View>
       <View style={styles.container}>
-        <BarCodeScanner
+        <Camera
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
           style={StyleSheet.absoluteFillObject}
         />
