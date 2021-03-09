@@ -32,7 +32,6 @@ export default function App() {
   const [minus, setMinus] = useState(false);
   const [torch, setTorch] = useState(false);
   const [torchMode, setTorchMode] = useState();
-  const [torchColor, setTorchColor] = useState();
 
   useEffect(() => {
     (async () => {

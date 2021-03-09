@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
     height: 120,
     width: 120,
     marginTop: 5,
+    resizeMode: "contain",
   },
 
   productInformations: {

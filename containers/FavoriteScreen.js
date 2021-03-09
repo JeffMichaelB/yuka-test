@@ -12,6 +12,7 @@ import {
 import * as FavoriteManager from "../components/FavoriteManager";
 import axios from "axios";
 import { AntDesign } from "@expo/vector-icons";
+import Product from "../components/Product";
 
 export default function FavoriteScreen() {
   const [products, setProducts] = useState([]);
@@ -52,7 +53,7 @@ export default function FavoriteScreen() {
       <Text>Favoris</Text>
       {products.map((product, index) => {
         return (
-          <View>
+          <View key={index}>
             <StatusBar barStyle="dark-content" />
             <TouchableOpacity
               data={product}
