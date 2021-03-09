@@ -64,7 +64,7 @@ export default function App() {
         console.log(error);
 
         setIsLoading(false);
-        setScanned(true);
+
         setErrorMessages(true);
       }
     };
@@ -155,7 +155,7 @@ export default function App() {
                   justifyContent: "space-between",
                 }}
               >
-                {scanned && !errorMessages ? (
+                {scanned && (
                   <View style={styles.productInformations}>
                     <View>
                       <Image
@@ -173,9 +173,8 @@ export default function App() {
                       <Text>{product.ecoscore_data.score} / 100</Text>
                     </View>
                   </View>
-                ) : (
-                  scanned && errorMessages && <Text>Produit inconnu</Text>
                 )}
+                {errorMessages && <Text>Produit inconnu</Text>}
 
                 <View style={{ flex: 1, flexDirection: "row" }}></View>
               </View>
@@ -234,5 +233,11 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: "white",
     borderRadius: 50,
+  },
+  productPicture: {
+    height: 120,
+    width: 120,
+    marginTop: 5,
+    resizeMode: "contain",
   },
 });
