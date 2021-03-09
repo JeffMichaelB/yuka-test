@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { AntDesign } from "@expo/vector-icons";
-import { FontAwesome5 } from "@expo/vector-icons";
+import {
+  AntDesign,
+  MaterialCommunityIcons,
+  FontAwesome5,
+} from "@expo/vector-icons";
+
 import {
   Text,
   StatusBar,
@@ -12,7 +16,6 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import { BarCodeScanner } from "expo-barcode-scanner";
 import { BottomSheet } from "react-native-btr";
 import axios from "axios";
 import * as HistoriqueManager from "../components/HistoriqueManager";
@@ -27,10 +30,13 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessages, setErrorMessages] = useState(false);
   const [minus, setMinus] = useState(false);
+  const [torch, setTorch] = useState(false);
+  const [torchMode, setTorchMode] = useState();
+  const [torchColor, setTorchColor] = useState();
 
   useEffect(() => {
     (async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
+      const { status } = await Camera.requestPermissionsAsync();
       setHasPermission(status === "granted");
     })();
   }, []);
@@ -66,6 +72,16 @@ export default function App() {
     fetchData();
   };
 
+  const TorchMode = () => {
+    setTorch(!torch);
+
+    if (torch) {
+      setTorchMode("off");
+    } else {
+      setTorchMode("torch");
+    }
+  };
+
   const closeBottomNavigationView = () => {
     setVisible(false);
     setScanned(false);
@@ -86,10 +102,21 @@ export default function App() {
       <View style={styles.container}>
         <Camera
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-          flashMode="on"
+          flashMode={torchMode}
           style={StyleSheet.absoluteFillObject}
         />
+        <TouchableOpacity
+          style={torch ? styles.torchOff : styles.torchOn}
+          onPress={TorchMode}
+        >
+          <MaterialCommunityIcons
+            name="flashlight"
+            size={24}
+            color={torch ? "black" : "white"}
+          />
+        </TouchableOpacity>
       </View>
+
       <View style={styles.containers}>
         <View style={styles.containers}>
           <BottomSheet visible={visible} enabledInnerScrolling={true}>
@@ -112,7 +139,7 @@ export default function App() {
                 style={styles.close}
                 onPress={closeBottomNavigationView}
               >
-                <AntDesign name="close" size={24} color="black" />
+                <AntDesign name="close" size={27} color="black" />
               </TouchableOpacity>
 
               <View
@@ -185,5 +212,21 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     paddingBottom: 15,
     paddingTop: 15,
+  },
+  torchOn: {
+    marginTop: 60,
+    marginLeft: 20,
+    width: 34,
+    padding: 5,
+    backgroundColor: "rgba(60, 60, 60, 0.3)",
+    borderRadius: 50,
+  },
+  torchOff: {
+    marginTop: 60,
+    marginLeft: 20,
+    width: 34,
+    padding: 5,
+    backgroundColor: "white",
+    borderRadius: 50,
   },
 });
