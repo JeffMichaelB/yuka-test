@@ -5452,11 +5452,6 @@ react-native-screens@~2.15.2:
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.15.2.tgz#a449700e895b462937211ec72ed6f09652758f06"
   integrity sha512-CagNf2APXkVoRlF3Mugr264FbKbrBg9eXUkqhIPVeZB8EsdS8XPrnt99yj/pzmT+yJMBY0dGrjXT8+68WYh6YQ==
 
-react-native-torch@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-torch/-/react-native-torch-1.2.0.tgz#e83303cc1be35f009d50728f775be1ff5d786203"
-  integrity sha512-xyk6DC/JL/P8ozGZt+qXvfzK3QugxJjjPWZRUZ7xIfhbHxX44Kw0Afc9gxk9LhVKrAKfwtjGUJgcx9/4FNMGvA==
-
 react-native-vector-icons@^6.6.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-6.7.0.tgz#8871ba52ef8e98878ba7a932847f96b6dfc1c137"

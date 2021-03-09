@@ -3,6 +3,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import {
   Text,
+  StatusBar,
   View,
   TouchableOpacity,
   StyleSheet,
@@ -16,6 +17,7 @@ import { BottomSheet } from "react-native-btr";
 import axios from "axios";
 import * as HistoriqueManager from "../components/HistoriqueManager";
 import { Camera } from "expo-camera";
+import Product from "../components/Product";
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -80,9 +82,11 @@ export default function App() {
     <ActivityIndicator size="large" color="grey" />
   ) : (
     <View>
+      <StatusBar barStyle="light-content" />
       <View style={styles.container}>
         <Camera
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+          flashMode="on"
           style={StyleSheet.absoluteFillObject}
         />
       </View>
@@ -177,28 +181,9 @@ const styles = StyleSheet.create({
   minus: {
     alignItems: "center",
   },
-
-  productPicture: {
-    height: 120,
-    width: 120,
-    marginTop: 5,
-  },
   close: {
     alignItems: "flex-end",
     paddingBottom: 15,
     paddingTop: 15,
   },
-  productInformations: {
-    flexDirection: "row",
-  },
-  productDescription: {
-    paddingLeft: 20,
-    flex: 1,
-  },
-  productTitle: {
-    fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 5,
-  },
-  sizeText: {},
 });

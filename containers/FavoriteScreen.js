@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/core";
-import { TouchableOpacity, Text, View } from "react-native";
+import {
+  TouchableOpacity,
+  StyleSheet,
+  StatusBar,
+  Text,
+  View,
+  ScrollView,
+  Image,
+} from "react-native";
 import * as FavoriteManager from "../components/FavoriteManager";
 import axios from "axios";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function FavoriteScreen() {
   const [products, setProducts] = useState([]);
@@ -39,22 +48,59 @@ export default function FavoriteScreen() {
       <Text>Chargement</Text>
     </View>
   ) : (
-    <>
+    <ScrollView>
+      <Text>Favoris</Text>
       {products.map((product, index) => {
         return (
-          <View key={index}>
+          <View>
+            <StatusBar barStyle="dark-content" />
             <TouchableOpacity
               data={product}
               onPress={() => {
                 deleteItem(product.code);
               }}
             >
-              <Text>x</Text>
+              <AntDesign name="close" size={24} color="black" />
             </TouchableOpacity>
-            <Text>{product.product_name}</Text>
+            <View style={styles.productInformations}>
+              <View>
+                <Image
+                  style={styles.productPicture}
+                  source={{
+                    uri: product.image_front_small_url,
+                  }}
+                />
+              </View>
+              <View style={styles.productDescription}>
+                <Text style={styles.productTitle}>{product.product_name}</Text>
+                <Text>{product.brands}</Text>
+                <Text>{product.ecoscore_data.score} / 100</Text>
+              </View>
+            </View>
           </View>
         );
       })}
-    </>
+    </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  productPicture: {
+    height: 120,
+    width: 120,
+    marginTop: 5,
+  },
+
+  productInformations: {
+    flexDirection: "row",
+  },
+  productDescription: {
+    paddingLeft: 20,
+    flex: 1,
+  },
+  productTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
+});

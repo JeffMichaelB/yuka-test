@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import {
   Button,
+  StatusBar,
+  ScrollView,
   Text,
+  StyleSheet,
   TouchableOpacity,
   ActivityIndicator,
   Image,
@@ -10,6 +13,8 @@ import {
 } from "react-native";
 import * as HistoriqueManager from "../components/HistoriqueManager";
 import axios from "axios";
+import { AntDesign } from "@expo/vector-icons";
+import * as Product from "../components/Product";
 
 export default function HistoriqueScreen() {
   const navigation = useNavigation();
@@ -51,12 +56,9 @@ export default function HistoriqueScreen() {
       <ActivityIndicator size="large" color="grey" />
     </View>
   ) : (
-    <>
-      {/*<Image
-        source={{
-          uri: products.selected_images.front.display.en,
-        }}
-      />*/}
+    <ScrollView>
+      <StatusBar barStyle="dark-content" />
+      <Text>Historique</Text>
       {products.map((product, index) => {
         return (
           <View key={index}>
@@ -66,7 +68,7 @@ export default function HistoriqueScreen() {
                 deleteItem(product.code);
               }}
             >
-              <Text>x</Text>
+              <AntDesign name="close" size={24} color="black" />
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -74,18 +76,48 @@ export default function HistoriqueScreen() {
                 navigation.navigate("ProductScreen", product);
               }}
             >
-              <View>
-                <Text>{product.product_name}</Text>
-                <Text>{product.brands}</Text>
-
-                {/*product.ingredients.map((score, index) => {
-                  return <Text key={index}>{score.percent_estimate}/100</Text>;
-                })*/}
+              <View style={styles.productInformations}>
+                <View>
+                  <Image
+                    style={styles.productPicture}
+                    source={{
+                      uri: product.image_front_small_url,
+                    }}
+                  />
+                </View>
+                <View style={styles.productDescription}>
+                  <Text style={styles.productTitle}>
+                    {product.product_name}
+                  </Text>
+                  <Text>{product.brands}</Text>
+                  <Text>{product.ecoscore_data.score} / 100</Text>
+                </View>
               </View>
             </TouchableOpacity>
           </View>
         );
       })}
-    </>
+    </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  productPicture: {
+    height: 120,
+    width: 120,
+    marginTop: 5,
+  },
+
+  productInformations: {
+    flexDirection: "row",
+  },
+  productDescription: {
+    paddingLeft: 20,
+    flex: 1,
+  },
+  productTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
+});
