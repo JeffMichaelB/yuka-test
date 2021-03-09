@@ -21,6 +21,7 @@ import axios from "axios";
 import * as HistoriqueManager from "../components/HistoriqueManager";
 import { Camera } from "expo-camera";
 import Product from "../components/Product";
+import { useIsFocused } from "@react-navigation/native";
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -86,6 +87,12 @@ export default function App() {
     setScanned(false);
   };
 
+  function FocusAwareStatusBar(props) {
+    const isFocused = useIsFocused();
+
+    return isFocused ? <StatusBar {...props} /> : null;
+  }
+
   if (hasPermission === null) {
     return <Text>Requesting for camera permission</Text>;
   }
@@ -97,7 +104,7 @@ export default function App() {
     <ActivityIndicator size="large" color="grey" />
   ) : (
     <View>
-      <StatusBar barStyle="light-content" />
+      <FocusAwareStatusBar barStyle="light-content" backgroundColor="#6a51ae" />
       <View style={styles.container}>
         <Camera
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
