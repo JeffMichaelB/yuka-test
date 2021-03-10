@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import * as FavoriteManager from "../components/FavoriteManager";
 import Product from "../components/Product";
+import ProductComplete from "../components/ProductComplete";
 
 export default function ProductScreen(data) {
   //console.log(data.route.params.code);
@@ -21,14 +22,17 @@ export default function ProductScreen(data) {
     await FavoriteManager.AddDataFavorite(code);
   };
 
+  const cal = product.nutriments["energy-kcal_100g"];
+  const prot = product.nutriments["proteins"].toFixed(1);
+  const graisse = product.nutriments["saturated-fat"].toFixed(1);
+  const sucre = product.nutriments["sugars"].toFixed(1);
+  const sel = product.nutriments["salt_100g"].toFixed(1);
+  const additifs = product.additives_n;
+
   return (
     <View>
       <Product product={product} />
-      <TouchableOpacity onPress={AddFavorite}>
-        <Text>Ajouter aux favoris</Text>
-      </TouchableOpacity>
+      <ProductComplete product={product} />
     </View>
   );
 }
-
-const styles = StyleSheet.create({});

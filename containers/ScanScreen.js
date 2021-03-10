@@ -22,6 +22,7 @@ import * as HistoriqueManager from "../components/HistoriqueManager";
 import { Camera } from "expo-camera";
 import Product from "../components/Product";
 import { useIsFocused } from "@react-navigation/native";
+import ProductComplete from "../components/ProductComplete";
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -155,7 +156,12 @@ export default function App() {
                   justifyContent: "space-between",
                 }}
               >
-                {scanned && <Product product={product} />}
+                {scanned && (
+                  <ScrollView>
+                    <Product product={product} />
+                    <ProductComplete product={product} />
+                  </ScrollView>
+                )}
                 {errorMessages && <Text>Produit inconnu</Text>}
 
                 <View style={{ flex: 1, flexDirection: "row" }}></View>
