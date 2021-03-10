@@ -1,38 +1,46 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/core";
 import {
-  Button,
+  SafeAreaView,
   TouchableOpacity,
-  Text,
-  View,
-  Image,
   StyleSheet,
+  Text,
+  ScrollView,
 } from "react-native";
-import * as FavoriteManager from "../components/FavoriteManager";
+import { AntDesign } from "@expo/vector-icons";
 import Product from "../components/Product";
 import ProductComplete from "../components/ProductComplete";
 
 export default function ProductScreen(data) {
-  //console.log(data.route.params.code);
+  const navigation = useNavigation();
 
   const product = data.route.params;
 
-  const AddFavorite = async () => {
-    const code = product.code;
-    await FavoriteManager.AddDataFavorite(code);
-  };
-
-  const cal = product.nutriments["energy-kcal_100g"];
-  const prot = product.nutriments["proteins"].toFixed(1);
-  const graisse = product.nutriments["saturated-fat"].toFixed(1);
-  const sucre = product.nutriments["sugars"].toFixed(1);
-  const sel = product.nutriments["salt_100g"].toFixed(1);
-  const additifs = product.additives_n;
-
   return (
-    <View>
-      <Product product={product} />
-      <ProductComplete product={product} />
-    </View>
+    <SafeAreaView>
+      <TouchableOpacity
+        style={styles.goBack}
+        onPress={() => {
+          navigation.goBack();
+        }}
+      >
+        <AntDesign name="left" size={24} color="black" />
+        <Text>Historique</Text>
+      </TouchableOpacity>
+      <ScrollView style={styles.scrollView}>
+        <Product product={product} />
+        <ProductComplete product={product} />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  scrollView: {
+    marginTop: Platform.OS === "android" ? Constants.statusBarHeight : 0,
+  },
+  goBack: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+});

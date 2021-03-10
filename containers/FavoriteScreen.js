@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   StatusBar,
+  SafeAreaView,
   Text,
   View,
   ScrollView,
@@ -13,6 +14,7 @@ import * as FavoriteManager from "../components/FavoriteManager";
 import axios from "axios";
 import { AntDesign } from "@expo/vector-icons";
 import Product from "../components/Product";
+import Constants from "expo-constants";
 
 export default function FavoriteScreen() {
   const [products, setProducts] = useState([]);
@@ -45,30 +47,36 @@ export default function FavoriteScreen() {
   });
 
   return isLoading ? (
-    <View>
+    <SafeAreaView>
       <Text>Chargement</Text>
-    </View>
+    </SafeAreaView>
   ) : (
-    <ScrollView>
-      <Text>Favoris</Text>
-      {products.map((product, index) => {
-        return (
-          <View key={index}>
-            <StatusBar barStyle="dark-content" />
-            <TouchableOpacity
-              data={product}
-              onPress={() => {
-                deleteItem(product.code);
-              }}
-            >
-              <AntDesign name="close" size={24} color="black" />
-            </TouchableOpacity>
-            <Product product={product} />
-          </View>
-        );
-      })}
-    </ScrollView>
+    <SafeAreaView>
+      <ScrollView style={styles.scrollView}>
+        <Text>Favoris</Text>
+        {products.map((product, index) => {
+          return (
+            <View key={index}>
+              <StatusBar barStyle="dark-content" />
+              <TouchableOpacity
+                data={product}
+                onPress={() => {
+                  deleteItem(product.code);
+                }}
+              >
+                <AntDesign name="close" size={24} color="black" />
+              </TouchableOpacity>
+              <Product product={product} />
+            </View>
+          );
+        })}
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  scrollView: {
+    marginTop: Platform.OS === "android" ? Constants.statusBarHeight : 0,
+  },
+});

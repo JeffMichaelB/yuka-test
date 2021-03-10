@@ -16,12 +16,16 @@ const Product = ({ product }) => {
     <View>
       <View style={styles.productInformations}>
         <View>
-          <Image
-            style={styles.productPicture}
-            source={{
-              uri: product.image_front_small_url,
-            }}
-          />
+          {product.image_front_small_url === undefined ? (
+            <Text>undefined</Text>
+          ) : (
+            <Image
+              style={styles.productPicture}
+              source={{
+                uri: product.image_front_small_url,
+              }}
+            />
+          )}
         </View>
         <View style={styles.productDescription}>
           <Text style={styles.productTitle}>{product.product_name}</Text>

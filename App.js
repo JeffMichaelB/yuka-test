@@ -22,7 +22,11 @@ import ScanScreen from "./containers/ScanScreen";
 
 const mainStackNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Stack.Screen name="Historique" component={HistoriqueScreen} />
       <Stack.Screen name="ProductScreen" component={ProductScreen} />
     </Stack.Navigator>
@@ -30,7 +34,11 @@ const mainStackNavigator = () => {
 };
 
 const favoriteNavigator = () => (
-  <Stack.Navigator>
+  <Stack.Navigator
+    screenOptions={{
+      headerShown: false,
+    }}
+  >
     <Stack.Screen name="Favoris" component={FavoriteScreen} />
   </Stack.Navigator>
 );
@@ -50,7 +58,7 @@ const ScreenNavigator = () => {
 const TabNavigator = () => (
   <Tab.Navigator
     tabBarOptions={{
-      activeTintColor: "green",
+      activeTintColor: "#37D06B",
       inactiveTintColor: "grey",
     }}
   >
