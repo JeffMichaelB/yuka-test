@@ -155,25 +155,7 @@ export default function App() {
                   justifyContent: "space-between",
                 }}
               >
-                {scanned && (
-                  <View style={styles.productInformations}>
-                    <View>
-                      <Image
-                        style={styles.productPicture}
-                        source={{
-                          uri: product.image_front_small_url,
-                        }}
-                      />
-                    </View>
-                    <View style={styles.productDescription}>
-                      <Text style={styles.productTitle}>
-                        {product.product_name}
-                      </Text>
-                      <Text>{product.brands}</Text>
-                      <Text>{product.ecoscore_data.score} / 100</Text>
-                    </View>
-                  </View>
-                )}
+                {scanned && <Product product={product} />}
                 {errorMessages && <Text>Produit inconnu</Text>}
 
                 <View style={{ flex: 1, flexDirection: "row" }}></View>
@@ -233,11 +215,5 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: "white",
     borderRadius: 50,
-  },
-  productPicture: {
-    height: 120,
-    width: 120,
-    marginTop: 5,
-    resizeMode: "contain",
   },
 });

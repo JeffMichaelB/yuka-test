@@ -14,12 +14,14 @@ import {
 import * as HistoriqueManager from "../components/HistoriqueManager";
 import axios from "axios";
 import { AntDesign } from "@expo/vector-icons";
-import * as Product from "../components/Product";
+import Product from "../components/Product";
 
 export default function HistoriqueScreen() {
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
+  const [score, setScore] = useState();
+  const [note, setNote] = useState();
 
   // Delete Item
   const deleteItem = async (code) => {
@@ -76,23 +78,7 @@ export default function HistoriqueScreen() {
                 navigation.navigate("ProductScreen", product);
               }}
             >
-              <View style={styles.productInformations}>
-                <View>
-                  <Image
-                    style={styles.productPicture}
-                    source={{
-                      uri: product.image_front_small_url,
-                    }}
-                  />
-                </View>
-                <View style={styles.productDescription}>
-                  <Text style={styles.productTitle}>
-                    {product.product_name}
-                  </Text>
-                  <Text>{product.brands}</Text>
-                  <Text>{product.ecoscore_data.score} / 100</Text>
-                </View>
-              </View>
+              <Product product={product} />
             </TouchableOpacity>
           </View>
         );
@@ -101,24 +87,4 @@ export default function HistoriqueScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  productPicture: {
-    height: 120,
-    width: 120,
-    marginTop: 5,
-    resizeMode: "contain",
-  },
-
-  productInformations: {
-    flexDirection: "row",
-  },
-  productDescription: {
-    paddingLeft: 20,
-    flex: 1,
-  },
-  productTitle: {
-    fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 5,
-  },
-});
+const styles = StyleSheet.create({});

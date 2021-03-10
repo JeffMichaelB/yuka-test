@@ -9,22 +9,53 @@ import {
   Image,
   ScrollView,
 } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 
-const Product = () => {
+const Product = ({ product }) => {
   return (
-    <View style={styles.productInformations}>
-      <View>
-        <Image
-          style={styles.productPicture}
-          source={{
-            uri: product.image_front_small_url,
-          }}
-        />
-      </View>
-      <View style={styles.productDescription}>
-        <Text style={styles.productTitle}>{product.product_name}</Text>
-        <Text>{product.brands}</Text>
-        <Text>{product.ecoscore_data.score} / 100</Text>
+    <View>
+      <View style={styles.productInformations}>
+        <View>
+          <Image
+            style={styles.productPicture}
+            source={{
+              uri: product.image_front_small_url,
+            }}
+          />
+        </View>
+        <View style={styles.productDescription}>
+          <Text style={styles.productTitle}>{product.product_name}</Text>
+          <Text>{product.brands}</Text>
+          {product.ecoscore_data.score === undefined ? (
+            <Text></Text>
+          ) : (
+            <Text>{product.ecoscore_data.score} / 100</Text>
+          )}
+          <View style={styles.note}>
+            <View
+              style={
+                product.ecoscore_data.score >= 75
+                  ? styles.roundGreen
+                  : product.ecoscore_data.score < 75 &&
+                    product.ecoscore_data.score >= 30
+                  ? styles.roundOrange
+                  : product.ecoscore_data.score < 30
+                  ? styles.roundRed
+                  : styles.roundGrey
+              }
+            ></View>
+            {product.ecoscore_data.score >= 75 ? (
+              <Text>Excellent</Text>
+            ) : product.ecoscore_data.score < 75 &&
+              product.ecoscore_data.score >= 30 ? (
+              <Text>Médiocre</Text>
+            ) : product.ecoscore_data.score < 30 ? (
+              <Text>Mauvais</Text>
+            ) : (
+              <Text>Non noté</Text>
+            )}
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -35,6 +66,7 @@ const styles = StyleSheet.create({
     height: 120,
     width: 120,
     marginTop: 5,
+    resizeMode: "contain",
   },
 
   productInformations: {
@@ -48,6 +80,38 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     marginBottom: 5,
+  },
+  roundRed: {
+    height: 12,
+    width: 12,
+    backgroundColor: "red",
+    borderRadius: 50,
+    marginRight: 5,
+  },
+  roundGreen: {
+    height: 12,
+    width: 12,
+    backgroundColor: "green",
+    borderRadius: 50,
+    marginRight: 5,
+  },
+  roundOrange: {
+    height: 12,
+    width: 12,
+    backgroundColor: "orange",
+    borderRadius: 50,
+    marginRight: 5,
+  },
+  roundGrey: {
+    height: 12,
+    width: 12,
+    backgroundColor: "grey",
+    borderRadius: 50,
+    marginRight: 5,
+  },
+  note: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
 
