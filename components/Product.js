@@ -28,11 +28,13 @@ const Product = ({ product }) => {
 
         <View style={styles.productDescription}>
           <Text style={styles.productTitle}>{product.product_name}</Text>
-          <Text>{product.brands}</Text>
+          <Text style={styles.margin}>{product.brands}</Text>
           {product.ecoscore_data.score === undefined ? (
             <Text></Text>
           ) : (
-            <Text>{product.ecoscore_data.score} / 100</Text>
+            <Text style={styles.margin}>
+              {product.ecoscore_data.score} / 100
+            </Text>
           )}
           <View style={styles.note}>
             <View
@@ -124,6 +126,9 @@ const styles = StyleSheet.create({
 
   right: {
     justifyContent: "center",
+  },
+  margin: {
+    marginBottom: 5,
   },
 });
 

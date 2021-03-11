@@ -53,7 +53,10 @@ export default function FavoriteScreen() {
     </SafeAreaView>
   ) : (
     <SafeAreaView style={styles.bgc}>
-      <ScrollView style={styles.scrollView}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={styles.scrollView}
+      >
         <Text style={styles.title}>Favoris</Text>
         {products.map((product, index) => {
           return (

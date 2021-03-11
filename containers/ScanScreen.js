@@ -146,7 +146,7 @@ export default function App() {
                 style={styles.close}
                 onPress={closeBottomNavigationView}
               >
-                <AntDesign name="close" size={27} color="black" />
+                <AntDesign name="close" size={18} color="black" />
               </TouchableOpacity>
 
               <View
@@ -157,7 +157,7 @@ export default function App() {
                 }}
               >
                 {scanned && (
-                  <ScrollView>
+                  <ScrollView showsVerticalScrollIndicator={false}>
                     <ProductHeader product={product} />
                     <ProductComplete product={product} />
                   </ScrollView>

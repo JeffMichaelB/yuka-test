@@ -59,7 +59,10 @@ export default function HistoriqueScreen() {
     </SafeAreaView>
   ) : (
     <SafeAreaView style={styles.bgc}>
-      <ScrollView style={styles.scrollView}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={styles.scrollView}
+      >
         <StatusBar barStyle="dark-content" />
         <Text style={styles.title}>Historique</Text>
         {products.map((product, index) => {

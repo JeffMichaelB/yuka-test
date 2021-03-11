@@ -27,7 +27,10 @@ export default function ProductScreen(data) {
         <AntDesign name="left" size={20} color="#007AFE" />
         <Text style={styles.goBackPage}>Historique</Text>
       </TouchableOpacity>
-      <ScrollView style={styles.scrollView}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={styles.scrollView}
+      >
         <ProductHeader product={product} />
         <ProductComplete product={product} />
       </ScrollView>

@@ -13,6 +13,7 @@ import * as FavoriteManager from "../components/FavoriteManager";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
 const ProductComplete = ({ product }) => {
   const AddFavorite = async () => {
@@ -252,8 +253,16 @@ const ProductComplete = ({ product }) => {
         </View>
       )}
 
-      <TouchableOpacity onPress={AddFavorite}>
-        <Text>Ajouter aux favoris</Text>
+      <TouchableOpacity style={styles.addFavorite} onPress={AddFavorite}>
+        <View style={styles.addFavoriteFlex}>
+          <Text style={styles.addFavoriteText}>Ajouter aux favoris</Text>
+          <AntDesign
+            style={styles.addFavoriteIcon}
+            name="plus"
+            size={20}
+            color="black"
+          />
+        </View>
       </TouchableOpacity>
     </View>
   );
@@ -336,6 +345,25 @@ const styles = StyleSheet.create({
   margin: {
     marginLeft: 25,
     marginRight: 5,
+  },
+  addFavorite: {
+    backgroundColor: "white",
+    height: 50,
+    justifyContent: "center",
+    borderRadius: 10,
+    marginTop: 40,
+    marginBottom: 40,
+  },
+  addFavoriteText: {
+    marginLeft: 10,
+    fontSize: 15,
+  },
+  addFavoriteFlex: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  addFavoriteIcon: {
+    marginRight: 10,
   },
 });
 
