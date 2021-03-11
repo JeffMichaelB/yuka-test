@@ -54,7 +54,7 @@ export default function FavoriteScreen() {
   ) : (
     <SafeAreaView style={styles.bgc}>
       <ScrollView style={styles.scrollView}>
-        <Text>Favoris</Text>
+        <Text style={styles.title}>Favoris</Text>
         {products.map((product, index) => {
           return (
             <View key={index}>
@@ -65,7 +65,12 @@ export default function FavoriteScreen() {
                   deleteItem(product.code);
                 }}
               >
-                <AntDesign name="close" size={24} color="black" />
+                <AntDesign
+                  style={styles.close}
+                  name="close"
+                  size={18}
+                  color="black"
+                />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
@@ -96,5 +101,15 @@ const styles = StyleSheet.create({
     marginLeft: "10%",
     borderColor: "#F1F1F2",
     borderBottomWidth: 1,
+  },
+  close: {
+    marginLeft: 10,
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 40,
+    marginBottom: 20,
+    marginTop: 20,
+    marginLeft: 10,
   },
 });

@@ -24,8 +24,8 @@ export default function ProductScreen(data) {
           navigation.goBack();
         }}
       >
-        <AntDesign name="left" size={24} color="black" />
-        <Text>Historique</Text>
+        <AntDesign name="left" size={20} color="#007AFE" />
+        <Text style={styles.goBackPage}>Historique</Text>
       </TouchableOpacity>
       <ScrollView style={styles.scrollView}>
         <ProductHeader product={product} />
@@ -45,5 +45,9 @@ const styles = StyleSheet.create({
   },
   scroll: {
     flex: 1,
+  },
+  goBackPage: {
+    color: "#007AFE",
+    fontSize: 20,
   },
 });
