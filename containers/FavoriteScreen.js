@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     marginTop: Platform.OS === "android" ? Constants.statusBarHeight : 0,
   },
   bgc: {
-    backgroundColor: "white",
+    flex: 1,
   },
   line: {
     height: 10,

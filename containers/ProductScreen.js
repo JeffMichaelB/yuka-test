@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import Product from "../components/Product";
+import ProductHeader from "../components/ProductHeader";
 import ProductComplete from "../components/ProductComplete";
 
 export default function ProductScreen(data) {
@@ -17,7 +17,7 @@ export default function ProductScreen(data) {
   const product = data.route.params;
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.scroll}>
       <TouchableOpacity
         style={styles.goBack}
         onPress={() => {
@@ -28,7 +28,7 @@ export default function ProductScreen(data) {
         <Text>Historique</Text>
       </TouchableOpacity>
       <ScrollView style={styles.scrollView}>
-        <Product product={product} />
+        <ProductHeader product={product} />
         <ProductComplete product={product} />
       </ScrollView>
     </SafeAreaView>
@@ -42,5 +42,8 @@ const styles = StyleSheet.create({
   goBack: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  scroll: {
+    flex: 1,
   },
 });

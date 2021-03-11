@@ -12,6 +12,7 @@ import {
 import * as FavoriteManager from "../components/FavoriteManager";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const ProductComplete = ({ product }) => {
   const AddFavorite = async () => {
@@ -38,11 +39,8 @@ const ProductComplete = ({ product }) => {
           </View>
           {cal <= 360 && (
             <View style={styles.nutriments}>
-              <Image
-                style={styles.image}
-                source={require("../assets/calories.png")}
-              />
-              <View>
+              <FontAwesome5 name="seedling" size={24} color="black" />
+              <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Calories</Text>
                 {cal == 0 ? (
                   <Text>Aucune calorie</Text>
@@ -63,7 +61,7 @@ const ProductComplete = ({ product }) => {
           {prot > 5 && (
             <View style={styles.nutriments}>
               <FontAwesome5 name="fish" size={24} color="black" />
-              <View>
+              <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Protéines</Text>
                 {prot > 5 && prot <= 8 ? (
                   <Text>Quelques protéines</Text>
@@ -86,7 +84,7 @@ const ProductComplete = ({ product }) => {
           {graisse <= 4 && (
             <View style={styles.nutriments}>
               <Ionicons name="water-outline" size={24} color="black" />
-              <View>
+              <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Graisses Saturées</Text>
                 {graisse == 0 ? (
                   <Text>Pas de graisses sat.</Text>
@@ -109,7 +107,7 @@ const ProductComplete = ({ product }) => {
           {sucre <= 5 && (
             <View style={styles.nutriments}>
               <Ionicons name="md-cube-outline" size={24} color="black" />
-              <View>
+              <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Sucres</Text>
                 {sucre == 0 ? (
                   <Text>Pas de sucre</Text>
@@ -133,7 +131,7 @@ const ProductComplete = ({ product }) => {
                 style={styles.image}
                 source={require("../assets/sel.png")}
               />
-              <View>
+              <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Sel</Text>
                 {sel == 0 ? (
                   <Text>Pas de sel</Text>
@@ -157,11 +155,8 @@ const ProductComplete = ({ product }) => {
           </View>
           {cal > 360 && (
             <View style={styles.nutriments}>
-              <Image
-                style={styles.image}
-                source={require("../assets/calories.png")}
-              />
-              <View>
+              <FontAwesome5 name="seedling" size={24} color="black" />
+              <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Calories</Text>
                 {cal > 360 && cal <= 560 ? (
                   <Text>Un peu trop calorique</Text>
@@ -183,7 +178,7 @@ const ProductComplete = ({ product }) => {
             <View style={styles.nutriments}>
               <Ionicons name="water-outline" size={24} color="black" />
 
-              <View>
+              <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Graisses Saturées</Text>
                 {graisse <= 7 ? (
                   <Text>Un peu trop gras</Text>
@@ -203,7 +198,7 @@ const ProductComplete = ({ product }) => {
             <View style={styles.nutriments}>
               <Ionicons name="md-cube-outline" size={24} color="black" />
 
-              <View>
+              <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Sucres</Text>
                 {sucre <= 8 ? (
                   <Text>Un peu trop sucré</Text>
@@ -225,7 +220,7 @@ const ProductComplete = ({ product }) => {
                 style={styles.image}
                 source={require("../assets/sel.png")}
               />
-              <View>
+              <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Sel</Text>
                 {sel <= 1.6 ? (
                   <Text>Un peu trop de sel</Text>
@@ -242,14 +237,10 @@ const ProductComplete = ({ product }) => {
           )}
 
           {additifs !== 0 && (
-            <View style={styles.nutriments}>
-              <Image
-                style={styles.image}
-                source={require("../assets/molecule.png")}
-              />
-
-              <Text style={styles.sousTitre}>Additifs</Text>
+            <View style={styles.nutrimentsSeparation}>
+              <MaterialCommunityIcons name="molecule" size={24} color="black" />
               <Text>{additifs}</Text>
+              <Text style={styles.sousTitre}>Additif(s)</Text>
             </View>
           )}
         </View>
@@ -304,7 +295,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     justifyContent: "space-between",
     marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 20,
   },
   container: {
     marginRight: 10,
@@ -321,6 +312,15 @@ const styles = StyleSheet.create({
   nutriments: {
     flexDirection: "row",
     alignItems: "center",
+    marginBottom: 20,
+  },
+  separations: {
+    flex: 1,
+  },
+  nutrimentsSeparation: {
+    flexDirection: "row",
+    alignItems: "center",
+    flex: 1,
   },
 });
 

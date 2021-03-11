@@ -10,6 +10,7 @@ import {
 import { AntDesign } from "@expo/vector-icons";
 import Product from "../components/Product";
 import ProductComplete from "../components/ProductComplete";
+import ProductHeader from "../components/ProductHeader";
 
 export default function FavoriteProductsScreen(data) {
   const navigation = useNavigation();
@@ -17,7 +18,7 @@ export default function FavoriteProductsScreen(data) {
   const product = data.route.params;
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.scroll}>
       <TouchableOpacity
         style={styles.goBack}
         onPress={() => {
@@ -28,7 +29,7 @@ export default function FavoriteProductsScreen(data) {
         <Text>Historique</Text>
       </TouchableOpacity>
       <ScrollView style={styles.scrollView}>
-        <Product product={product} />
+        <ProductHeader product={product} />
         <ProductComplete product={product} />
       </ScrollView>
     </SafeAreaView>
@@ -42,5 +43,8 @@ const styles = StyleSheet.create({
   goBack: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  scroll: {
+    flex: 1,
   },
 });
