@@ -20,7 +20,7 @@ import { BottomSheet } from "react-native-btr";
 import axios from "axios";
 import * as HistoriqueManager from "../components/HistoriqueManager";
 import { Camera } from "expo-camera";
-import Product from "../components/Product";
+import ProductHeader from "../components/ProductHeader";
 import { useIsFocused } from "@react-navigation/native";
 import ProductComplete from "../components/ProductComplete";
 
@@ -158,7 +158,7 @@ export default function App() {
               >
                 {scanned && (
                   <ScrollView>
-                    <Product product={product} />
+                    <ProductHeader product={product} />
                     <ProductComplete product={product} />
                   </ScrollView>
                 )}
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
   bottomNavigationViewFalse: {
     backgroundColor: "white",
     width: "100%",
-    height: 250,
+    height: 220,
     paddingRight: 20,
     paddingLeft: 20,
     borderTopLeftRadius: 10,

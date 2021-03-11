@@ -39,7 +39,7 @@ const ProductComplete = ({ product }) => {
           </View>
           {cal <= 360 && (
             <View style={styles.nutriments}>
-              <FontAwesome5 name="seedling" size={24} color="black" />
+              <FontAwesome5 name="seedling" size={24} color="#7C7C7C" />
               <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Calories</Text>
                 {cal == 0 ? (
@@ -60,7 +60,7 @@ const ProductComplete = ({ product }) => {
 
           {prot > 5 && (
             <View style={styles.nutriments}>
-              <FontAwesome5 name="fish" size={24} color="black" />
+              <FontAwesome5 name="fish" size={24} color="#7C7C7C" />
               <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Protéines</Text>
                 {prot > 5 && prot <= 8 ? (
@@ -83,7 +83,7 @@ const ProductComplete = ({ product }) => {
 
           {graisse <= 4 && (
             <View style={styles.nutriments}>
-              <Ionicons name="water-outline" size={24} color="black" />
+              <Ionicons name="water-outline" size={24} color="#7C7C7C" />
               <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Graisses Saturées</Text>
                 {graisse == 0 ? (
@@ -106,7 +106,7 @@ const ProductComplete = ({ product }) => {
 
           {sucre <= 5 && (
             <View style={styles.nutriments}>
-              <Ionicons name="md-cube-outline" size={24} color="black" />
+              <Ionicons name="md-cube-outline" size={24} color="#7C7C7C" />
               <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Sucres</Text>
                 {sucre == 0 ? (
@@ -127,9 +127,10 @@ const ProductComplete = ({ product }) => {
 
           {sel <= 0.9 && (
             <View style={styles.nutriments}>
-              <Image
-                style={styles.image}
-                source={require("../assets/sel.png")}
+              <MaterialCommunityIcons
+                name="food-variant"
+                size={24}
+                color="#7C7C7C"
               />
               <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Sel</Text>
@@ -155,7 +156,7 @@ const ProductComplete = ({ product }) => {
           </View>
           {cal > 360 && (
             <View style={styles.nutriments}>
-              <FontAwesome5 name="seedling" size={24} color="black" />
+              <FontAwesome5 name="seedling" size={24} color="#7C7C7C" />
               <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Calories</Text>
                 {cal > 360 && cal <= 560 ? (
@@ -176,7 +177,7 @@ const ProductComplete = ({ product }) => {
 
           {graisse > 4 && (
             <View style={styles.nutriments}>
-              <Ionicons name="water-outline" size={24} color="black" />
+              <Ionicons name="water-outline" size={24} color="#7C7C7C" />
 
               <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Graisses Saturées</Text>
@@ -196,7 +197,7 @@ const ProductComplete = ({ product }) => {
 
           {sucre > 5 && (
             <View style={styles.nutriments}>
-              <Ionicons name="md-cube-outline" size={24} color="black" />
+              <Ionicons name="md-cube-outline" size={24} color="#7C7C7C" />
 
               <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Sucres</Text>
@@ -216,9 +217,10 @@ const ProductComplete = ({ product }) => {
 
           {sel > 0.9 && (
             <View style={styles.nutriments}>
-              <Image
-                style={styles.image}
-                source={require("../assets/sel.png")}
+              <MaterialCommunityIcons
+                name="food-variant"
+                size={24}
+                color="#7C7C7C"
               />
               <View style={styles.separations}>
                 <Text style={styles.sousTitre}>Sel</Text>
@@ -238,8 +240,12 @@ const ProductComplete = ({ product }) => {
 
           {additifs !== 0 && (
             <View style={styles.nutrimentsSeparation}>
-              <MaterialCommunityIcons name="molecule" size={24} color="black" />
-              <Text>{additifs}</Text>
+              <MaterialCommunityIcons
+                name="molecule"
+                size={24}
+                color="#7C7C7C"
+              />
+              <Text style={styles.margin}>{additifs}</Text>
               <Text style={styles.sousTitre}>Additif(s)</Text>
             </View>
           )}
@@ -260,6 +266,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#D1011D",
     borderRadius: 50,
     marginRight: 5,
+    marginLeft: 5,
   },
   roundGreen: {
     height: 12,
@@ -267,6 +274,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#209952",
     borderRadius: 50,
     marginRight: 5,
+    marginLeft: 5,
   },
   roundOrange: {
     height: 12,
@@ -274,6 +282,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E67F22",
     borderRadius: 50,
     marginRight: 5,
+    marginLeft: 5,
   },
   roundLightGreen: {
     height: 12,
@@ -281,6 +290,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#2BD171",
     borderRadius: 50,
     marginRight: 5,
+    marginLeft: 5,
   },
   note: {
     flexDirection: "row",
@@ -294,7 +304,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-end",
     justifyContent: "space-between",
-    marginTop: 10,
+    marginTop: 15,
     marginBottom: 20,
   },
   container: {
@@ -316,11 +326,16 @@ const styles = StyleSheet.create({
   },
   separations: {
     flex: 1,
+    marginLeft: 25,
   },
   nutrimentsSeparation: {
     flexDirection: "row",
     alignItems: "center",
     flex: 1,
+  },
+  margin: {
+    marginLeft: 25,
+    marginRight: 5,
   },
 });
 
