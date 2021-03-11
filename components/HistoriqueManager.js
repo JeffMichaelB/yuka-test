@@ -5,12 +5,12 @@ const key = "historique";
 const Load = async () => {
   const datas = await AsyncStorage.getItem(key);
 
-  // Lecture de la valeur en string
+  // Lecture de la valeur en json
   return datas === null ? [] : JSON.parse(datas);
 };
 
 const Save = async (datas) => {
-  // Stockage de la valeur transformée en JSON
+  // Stockage de la valeur transformée en string
   await AsyncStorage.setItem(key, JSON.stringify(datas));
 };
 
