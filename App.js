@@ -19,6 +19,7 @@ import HistoriqueScreen from "./containers/HistoriqueScreen";
 import FavoriteScreen from "./containers/FavoriteScreen";
 import ProductScreen from "./containers/ProductScreen";
 import ScanScreen from "./containers/ScanScreen";
+import FavoriteProductsScreen from "./containers/FavoriteProductsScreen";
 
 const mainStackNavigator = () => {
   return (
@@ -40,6 +41,7 @@ const favoriteNavigator = () => (
     }}
   >
     <Stack.Screen name="Favoris" component={FavoriteScreen} />
+    <Stack.Screen name="FavoriteProducts" component={FavoriteProductsScreen} />
   </Stack.Navigator>
 );
 

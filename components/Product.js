@@ -15,18 +15,17 @@ const Product = ({ product }) => {
   return (
     <View>
       <View style={styles.productInformations}>
-        <View>
-          {product.image_front_small_url === undefined ? (
-            <Text>undefined</Text>
-          ) : (
-            <Image
-              style={styles.productPicture}
-              source={{
-                uri: product.image_front_small_url,
-              }}
-            />
-          )}
-        </View>
+        {product.image_front_small_url === undefined ? (
+          <Text>undefined</Text>
+        ) : (
+          <Image
+            style={styles.productPicture}
+            source={{
+              uri: product.image_front_small_url,
+            }}
+          />
+        )}
+
         <View style={styles.productDescription}>
           <Text style={styles.productTitle}>{product.product_name}</Text>
           <Text>{product.brands}</Text>
@@ -60,6 +59,9 @@ const Product = ({ product }) => {
             )}
           </View>
         </View>
+        <View style={styles.right}>
+          <AntDesign name="right" size={24} color="black" />
+        </View>
       </View>
     </View>
   );
@@ -75,13 +77,15 @@ const styles = StyleSheet.create({
 
   productInformations: {
     flexDirection: "row",
+    margin: 10,
   },
   productDescription: {
     paddingLeft: 20,
     flex: 1,
+    justifyContent: "center",
   },
   productTitle: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "bold",
     marginBottom: 5,
   },
@@ -116,6 +120,10 @@ const styles = StyleSheet.create({
   note: {
     flexDirection: "row",
     alignItems: "center",
+  },
+
+  right: {
+    justifyContent: "center",
   },
 });
 

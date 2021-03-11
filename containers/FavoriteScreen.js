@@ -17,6 +17,7 @@ import Product from "../components/Product";
 import Constants from "expo-constants";
 
 export default function FavoriteScreen() {
+  const navigation = useNavigation();
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -51,7 +52,7 @@ export default function FavoriteScreen() {
       <Text>Chargement</Text>
     </SafeAreaView>
   ) : (
-    <SafeAreaView>
+    <SafeAreaView style={styles.bgc}>
       <ScrollView style={styles.scrollView}>
         <Text>Favoris</Text>
         {products.map((product, index) => {
@@ -66,7 +67,14 @@ export default function FavoriteScreen() {
               >
                 <AntDesign name="close" size={24} color="black" />
               </TouchableOpacity>
-              <Product product={product} />
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("FavoriteProductsScreen", product);
+                }}
+              >
+                <Product product={product} />
+              </TouchableOpacity>
+              <View style={styles.line}></View>
             </View>
           );
         })}
@@ -78,5 +86,15 @@ export default function FavoriteScreen() {
 const styles = StyleSheet.create({
   scrollView: {
     marginTop: Platform.OS === "android" ? Constants.statusBarHeight : 0,
+  },
+  bgc: {
+    backgroundColor: "white",
+  },
+  line: {
+    height: 10,
+    width: "90%",
+    marginLeft: "10%",
+    borderColor: "#F1F1F2",
+    borderBottomWidth: 1,
   },
 });

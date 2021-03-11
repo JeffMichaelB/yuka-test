@@ -30,20 +30,23 @@ export default function HistoriqueScreen() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const datas = await HistoriqueManager.Load();
+      try {
+        const datas = await HistoriqueManager.Load();
+        setProducts(
+          await Promise.all(
+            datas.map(async (data) => {
+              const response = await axios.get(
+                `https://world.openfoodfacts.org/api/v0/product/${data}.json`
+              );
 
-      setProducts(
-        await Promise.all(
-          datas.map(async (data) => {
-            const response = await axios.get(
-              `https://world.openfoodfacts.org/api/v0/product/${data}.json`
-            );
-
-            return response.data.product;
-          })
-        )
-      );
-      setIsLoading(false);
+              return response.data.product;
+            })
+          )
+        );
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchData();
@@ -55,7 +58,7 @@ export default function HistoriqueScreen() {
       <ActivityIndicator size="large" color="grey" />
     </SafeAreaView>
   ) : (
-    <SafeAreaView>
+    <SafeAreaView style={styles.bgc}>
       <ScrollView style={styles.scrollView}>
         <StatusBar barStyle="dark-content" />
         <Text>Historique</Text>
@@ -78,6 +81,7 @@ export default function HistoriqueScreen() {
               >
                 <Product product={product} />
               </TouchableOpacity>
+              <View style={styles.line}></View>
             </View>
           );
         })}
@@ -101,5 +105,15 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     marginTop: Platform.OS === "android" ? Constants.statusBarHeight : 0,
+  },
+  bgc: {
+    backgroundColor: "white",
+  },
+  line: {
+    height: 10,
+    width: "90%",
+    marginLeft: "10%",
+    borderColor: "#F1F1F2",
+    borderBottomWidth: 1,
   },
 });
