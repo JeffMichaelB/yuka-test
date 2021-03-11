@@ -4,12 +4,12 @@ const key = "favorite";
 
 const LoadFavorite = async () => {
   const datas = await AsyncStorage.getItem(key);
-  // Lecture de la valeur en string
+  // Lecture de la valeur en JSON
   return datas === null ? [] : JSON.parse(datas);
 };
 
 const SaveFavorite = async (datas) => {
-  // Stockage de la valeur transformée en JSON
+  // Stockage de la valeur transformée en string
   await AsyncStorage.setItem(key, JSON.stringify(datas));
 };
 
