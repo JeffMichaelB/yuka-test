@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import Product from "../components/Product";
-import ProductComplete from "../components/ProductComplete";
+import ProductCompleteFavorite from "../components/ProductCompleteFavorite";
 import ProductHeader from "../components/ProductHeader";
 
 export default function FavoriteProductsScreen(data) {
@@ -33,7 +33,7 @@ export default function FavoriteProductsScreen(data) {
         style={styles.scrollView}
       >
         <ProductHeader product={product} />
-        <ProductComplete product={product} />
+        <ProductCompleteFavorite product={product} />
       </ScrollView>
     </SafeAreaView>
   );

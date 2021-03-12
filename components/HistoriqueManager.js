@@ -15,9 +15,7 @@ const Save = async (datas) => {
 };
 
 const DeleteData = async (data, datas) => {
-  if (!datas) {
-    datas = await Load();
-  }
+  datas = await Load();
 
   const index = datas.indexOf(data);
   if (index !== -1) {

@@ -30,7 +30,7 @@ export default function App() {
   const [visible, setVisible] = useState(false);
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessages, setErrorMessages] = useState(false);
+  const [errorMessages, setErrorMessages] = useState(true);
   const [minus, setMinus] = useState(false);
   const [torch, setTorch] = useState(false);
   const [torchMode, setTorchMode] = useState();
@@ -63,9 +63,7 @@ export default function App() {
         await HistoriqueManager.AddData(data);
       } catch (error) {
         console.log(error);
-
         setIsLoading(false);
-
         setErrorMessages(true);
       }
     };
@@ -86,6 +84,7 @@ export default function App() {
   const closeBottomNavigationView = () => {
     setVisible(false);
     setScanned(false);
+    setTorch(false);
   };
 
   function FocusAwareStatusBar(props) {
@@ -100,6 +99,8 @@ export default function App() {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
+
+  console.log(errorMessages);
 
   return isLoading ? (
     <ActivityIndicator size="large" color="grey" />
@@ -156,7 +157,7 @@ export default function App() {
                   justifyContent: "space-between",
                 }}
               >
-                {scanned && (
+                {scanned && !errorMessages && (
                   <ScrollView showsVerticalScrollIndicator={false}>
                     <ProductHeader product={product} />
                     <ProductComplete product={product} />

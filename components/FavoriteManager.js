@@ -14,9 +14,7 @@ const SaveFavorite = async (datas) => {
 };
 
 const DeleteDataFavorite = async (data, datas) => {
-  if (!datas) {
-    datas = await LoadFavorite();
-  }
+  datas = await LoadFavorite();
 
   const index = datas.indexOf(data);
   if (index !== -1) {
