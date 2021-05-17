@@ -13,11 +13,11 @@ This project uses [OpenFoodFacts](https://fr.openfoodfacts.org/) API and allows 
 
 ## Screenshots of application
 
+<p>
 <img src="./assets/screen1.png" alt="drawing" width="190"/>
-
 <img src="./assets/screen3.png" alt="drawing" width="190"/>
-
 <img src="./assets/screen2.png" alt="drawing" width="190"/>
+</p>
 
 &nbsp;
 
