@@ -2,12 +2,12 @@
 
 ## Overview
 
-This project uses [OpenFoodFacts](https://fr.openfoodfacts.org/) API and allows to :
+This project uses [OpenFoodFacts](https://fr.openfoodfacts.org/) API and allows you to :
 
-- Scan a product ( possibility to set the torch mode )
-- View the nutritional value of the scanned product
-- Visualise the scan history
-- Add a scanned product to favorites
+- Scan a product ( torch mode available )
+- See the nutritional values of the scanned product
+- View the history of scanned products
+- Manage your favorites products
 
 &nbsp;
 
@@ -25,7 +25,7 @@ This project uses [OpenFoodFacts](https://fr.openfoodfacts.org/) API and allows 
 
 First make sure you have installed all dependencies and applications to run project on your computer : [Getting Started with Expo](https://docs.expo.io/get-started/installation/).
 
-This project works fine for iOS but not on Android device because I've only worked on iOS.
+The development was entirely done on iOS : Android compatibility isn't guaranteed (yet).
 
 Clone this repository :
 
